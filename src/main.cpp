@@ -12,7 +12,7 @@ const char* ssid = "unser-smartes-zuhause.de";
 const char* password = "ru********";
 
 // Add your MQTT Broker IP address, example:
-const char* mqtt_server = "192.168.178.xxx";
+const char* mqtt_server = "192.168.178.6";
 const char* mqttUser = "loxxxxxx";
 const char* mqttPassword = "Lwkxxxxxxxxxxxx";
 
@@ -22,14 +22,8 @@ const char* mqttTopic_Month = "radon1/month";
 
 // Loxone Miniserver
 
-const char * udpAddress = "192.168.178.xxx";
+const char * udpAddress = "192.168.178.5";
 const int udpPort = 44444;
-
-
-
-
-
-
 
 
 WiFiClient espClient;
@@ -79,22 +73,14 @@ void setup() {
 
 void reconnect() {
   // Loop until we're reconnected
-  while (!client.connected()) {
-    Serial.print("Attempting MQTT connection...");
-    // Attempt to connect
+  
     if (client.connect("Radon_RD200",mqttUser,mqttPassword)) {
       Serial.println("connected");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
-      Serial.println(" try again in 5 seconds");
-      // Wait 5 seconds before retrying
-      delay(5000);
-    }
   }
 }
-
-
 
 void loop() {
   // must call this to read current values from the RadonEye
